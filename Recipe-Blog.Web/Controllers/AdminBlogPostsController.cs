@@ -3,6 +3,7 @@ using Recipe_Blog.Web.Models.ViewModels;
 using Recipe_Blog.Web.Repositories;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Recipe_Blog.Web.Models.Domain;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Recipe_Blog.Web.Controllers
 {
@@ -78,5 +79,95 @@ namespace Recipe_Blog.Web.Controllers
 
             return View(blogPosts);
         }
+        
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            //Pull result from repository
+            var blogPost = await blogPostRepository.GetBlogPostByIdAsync(id);
+
+            var tags = await tagRepository.GetAllTagsAsync();
+
+            if(blogPost != null)
+            {
+                //Map domain model into view model
+                var viewModel = new EditBlogPostRequest
+                {
+                    Id = blogPost.Id,
+                    Heading = blogPost.Heading,
+                    PageTitle = blogPost.PageTitle,
+                    Content = blogPost.Content,
+                    Author = blogPost.Author,
+                    ImageUrl = blogPost.ImageUrl,
+                    UrlHandle = blogPost.UrlHandle,
+                    Description = blogPost.Description,
+                    PublishedDate = blogPost.PublishedDate,
+                    Visible = blogPost.Visible,
+                    Tags = tags.Select(x => new SelectListItem
+                    {
+                        Text = x.Name,
+                        Value = x.Id.ToString()
+                    }),
+                    SelectedTags = blogPost.Tags.Select(x => x.Id.ToString()).ToArray()
+                };
+                //Return data to view (edit page)
+                return View(viewModel);
+            }
+            else
+            {
+                return View(null);
+            }
+            
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditBlogPostRequest editBlogPost)
+        {
+            //Map view model back to domain model
+            var domainModel = new BlogPost
+            {
+                Id = editBlogPost.Id,
+                Heading = editBlogPost.Heading,
+                PageTitle = editBlogPost.PageTitle,
+                Content = editBlogPost.Content,
+                Author = editBlogPost.Author,
+                ImageUrl = editBlogPost.ImageUrl,
+                UrlHandle = editBlogPost.UrlHandle,
+                Description = editBlogPost.Description,
+                PublishedDate = editBlogPost.PublishedDate,
+                Visible = editBlogPost.Visible
+            };
+            //Map tags into domain model
+            var selectedTags = new List<Tag>();
+
+            foreach(var selectedTag in editBlogPost.SelectedTags)
+            {
+                if(Guid.TryParse(selectedTag, out var tag))
+                {
+                    var foundTag = await tagRepository.GetTagByIdAsync(tag);
+                        if(foundTag != null)
+                    {
+                        selectedTags.Add(foundTag);
+                    }
+                }
+            }
+            domainModel.Tags = selectedTags;
+
+
+            //Submit changes to repository to update database
+            var updatedBlog = await blogPostRepository.UpdateAsync(domainModel);
+
+            //Redirect view to GET
+            if(updatedBlog != null)
+            {
+                //Show success notification
+                return RedirectToAction("Edit");
+            }
+            else
+            {
+                //Show error notification
+                return RedirectToAction("Edit");
+            }
+        }
+        
     }
 }

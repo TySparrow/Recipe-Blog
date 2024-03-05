@@ -29,18 +29,41 @@ namespace Recipe_Blog.Web.Repositories
 
         public async Task<IEnumerable<BlogPost>> GetAllBlogPostsAsync()
         {
-            //Return blog posts and collection of tags for them (include method)
+            //Return blog posts and collection of tags for them ('Include' method)
             return await dbContext.BlogPosts.Include(x => x.Tags).ToListAsync();
         }
 
         public async Task<BlogPost?> GetBlogPostByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await dbContext.BlogPosts.Include(x => x.Tags).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<BlogPost?> UpdateAsync(BlogPost blogPost)
         {
-            throw new NotImplementedException();
+            var existingBlog = await dbContext.BlogPosts.Include(x => x.Tags)
+                .FirstOrDefaultAsync(x => x.Id == blogPost.Id);
+
+            if (existingBlog != null)
+            {
+                existingBlog.Id = blogPost.Id;
+                existingBlog.Heading = blogPost.Heading;
+                existingBlog.PageTitle = blogPost.PageTitle;
+                existingBlog.Content = blogPost.Content;
+                existingBlog.Description = blogPost.Description;
+                existingBlog.ImageUrl = blogPost.ImageUrl;
+                existingBlog.UrlHandle = blogPost.UrlHandle;
+                existingBlog.PublishedDate = blogPost.PublishedDate;
+                existingBlog.Author = blogPost.Author;
+                existingBlog.Visible = blogPost.Visible;
+                existingBlog.Tags = blogPost.Tags;
+
+                await dbContext.SaveChangesAsync();
+                return existingBlog;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

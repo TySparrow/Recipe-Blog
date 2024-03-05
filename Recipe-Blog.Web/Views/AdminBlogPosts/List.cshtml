@@ -16,6 +16,7 @@
                     <td>Id</td>
                     <td>Heading</td>
                     <td>Tags</td>
+                    <td> </td>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +33,11 @@
                                     <span class="badge bg-secondary me-1">@tag.Name</span>
                                 }
                             </div>
+                        </td>
+                        <td>
+                            @*Edit button to jump to edit view page for selected blog post*@
+                            <a asp-area="" asp-controller="AdminBlogPosts" asp-action="Edit"
+                            asp-route-id="@blogPost.Id">Edit</a>
                         </td>
                     </tr>
                 }

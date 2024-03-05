@@ -46,13 +46,12 @@
             <label class="form-check-label">Visible?</label>
         </div>
         <div class="mb-3">
-            <button type="submit" class="btn btn-dark">Save Post</button>
-        </div>
-        <div class="mb-3">
             <label class="form-label">Tags</label>
             <select class="form-select" asp-items="@Model.Tags" asp-for="SelectedTags">
-
             </select>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-dark">Save Post</button>
         </div>
     </form>
 </div>
