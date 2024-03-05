@@ -3466,11 +3466,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tyler Sparrow\\workspace\\Recipe-Blog\\Recipe-Blog.Web\\Recipe-Blog.Web.csproj",
+      "projectUniqueName": "C:\\Users\\Tyler Sparrow\\workspace\\Blog-Website\\Recipe-Blog\\Recipe-Blog.Web\\Recipe-Blog.Web.csproj",
       "projectName": "Recipe-Blog.Web",
-      "projectPath": "C:\\Users\\Tyler Sparrow\\workspace\\Recipe-Blog\\Recipe-Blog.Web\\Recipe-Blog.Web.csproj",
+      "projectPath": "C:\\Users\\Tyler Sparrow\\workspace\\Blog-Website\\Recipe-Blog\\Recipe-Blog.Web\\Recipe-Blog.Web.csproj",
       "packagesPath": "C:\\Users\\Tyler Sparrow\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tyler Sparrow\\workspace\\Recipe-Blog\\Recipe-Blog.Web\\obj\\",
+      "outputPath": "C:\\Users\\Tyler Sparrow\\workspace\\Blog-Website\\Recipe-Blog\\Recipe-Blog.Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Tyler Sparrow\\AppData\\Roaming\\NuGet\\NuGet.Config",

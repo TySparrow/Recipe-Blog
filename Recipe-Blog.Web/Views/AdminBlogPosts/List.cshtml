@@ -15,6 +15,7 @@
                 <tr>
                     <td>Id</td>
                     <td>Heading</td>
+                    <td>Tags</td>
                 </tr>
             </thead>
             <tbody>
@@ -23,6 +24,15 @@
                     <tr>
                         <td>@blogPost.Id</td>
                         <td>@blogPost.Heading</td>
+                        <td>
+                            @* Loop through each tag in collection of tags to display *@
+                            <div class="d-flex">
+                                @foreach(var tag in blogPost.Tags)
+                                {
+                                    <span class="badge bg-secondary me-1">@tag.Name</span>
+                                }
+                            </div>
+                        </td>
                     </tr>
                 }
             </tbody>

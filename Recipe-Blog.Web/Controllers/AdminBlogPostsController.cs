@@ -68,11 +68,12 @@ namespace Recipe_Blog.Web.Controllers
             await blogPostRepository.AddAsync(blogPost);
             return RedirectToAction("Add");
         }
+        
         [HttpGet]
         [ActionName("List")]
         public async Task<IActionResult> List()
         {
-            //Calling dbContext to generate the list of tags
+            //Calling repository to generate the list of blog posts
             var blogPosts = await blogPostRepository.GetAllBlogPostsAsync();
 
             return View(blogPosts);

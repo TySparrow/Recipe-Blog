@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "C+EKjMJUp9ZOYU/a2AsTgAWrj3oFuklNM75LuwmFp9GP7+ELn8lymxWnu43F9zW11h8pDO52brAS4wEwlf3g0w==",
+  "dgSpecHash": "S1Z4AlU0otW0LfXRGxCkijHpbrZUfNrRjPejOQ7gMG+kwMN7YAQ/BOOPFu4H+w5TZ8LA3fd1CEuOlBiHi2AIjA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tyler Sparrow\\workspace\\Recipe-Blog\\Recipe-Blog.Web\\Recipe-Blog.Web.csproj",
+  "projectFilePath": "C:\\Users\\Tyler Sparrow\\workspace\\Blog-Website\\Recipe-Blog\\Recipe-Blog.Web\\Recipe-Blog.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tyler Sparrow\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Tyler Sparrow\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

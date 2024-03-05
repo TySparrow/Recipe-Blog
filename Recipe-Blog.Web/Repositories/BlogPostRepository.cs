@@ -29,7 +29,8 @@ namespace Recipe_Blog.Web.Repositories
 
         public async Task<IEnumerable<BlogPost>> GetAllBlogPostsAsync()
         {
-            return await dbContext.BlogPosts.ToListAsync();
+            //Return blog posts and collection of tags for them (include method)
+            return await dbContext.BlogPosts.Include(x => x.Tags).ToListAsync();
         }
 
         public async Task<BlogPost?> GetBlogPostByIdAsync(Guid id)
